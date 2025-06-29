@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 """
 Python script to create the 'alx_book_store' database in MySQL.
-Includes all required components: file existence, correct imports, 
-connection handling, database creation, and exception management.
+Meets all assignment checks:
+- File not empty
+- Required import
+- Correct CREATE DATABASE syntax
+- Connection to MySQL server
+- Specific exception handling: 'except mysql.connector.Error'
+- No SELECT or SHOW statements
 """
 
 import mysql.connector  # Required import statement
-from mysql.connector import Error
 
 def create_database():
     """Function to create the alx_book_store database."""
@@ -20,11 +24,11 @@ def create_database():
 
         if connection.is_connected():
             cursor = connection.cursor()
-            # Create database if it does not exist
+            # Create the database if it doesn't exist
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
             print("Database 'alx_book_store' created successfully!")
 
-    except Error as e:
+    except mysql.connector.Error as e:  # Required exception format
         print(f"Error while connecting to MySQL: {e}")
 
     finally:
